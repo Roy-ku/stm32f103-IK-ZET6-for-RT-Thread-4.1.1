@@ -21,7 +21,7 @@ if GetDepend(['BSP_USING_LED']):
 if GetDepend(['BSP_USING_BEEP']):
     src += Glob('ports/beep/drv_beep.c')
 
-if GetDepend(['BSP_USING_UART3']):
+if GetDepend(['BSP_USING_ESP01S']):
     src += Glob('ports/esp01s/drv_esp01s.c')
 
 path =  [cwd]
@@ -36,8 +36,8 @@ if GetDepend(['BSP_USING_LED']):
 if GetDepend(['BSP_USING_BEEP']):
     path += [cwd + '/ports/beep']
 
-if GetDepend(['BSP_USING_UART3']):
-    path += [cwd + '/ports/drv_esp01s']
+if GetDepend(['BSP_USING_ESP01S']):
+    path += [cwd + '/ports/esp01s']
 
 startup_path_prefix = SDK_LIB
 

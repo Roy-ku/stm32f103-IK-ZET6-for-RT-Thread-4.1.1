@@ -18,6 +18,7 @@
 #include "drv_key.h"
 #include "drv_led.h"
 #include "drv_beep.h"
+#include "drv_esp01s.h"
 #include "MessageQueue.h"
 
 #ifdef __cplusplus

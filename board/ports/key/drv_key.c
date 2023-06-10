@@ -340,7 +340,7 @@ int flex_button_main(void)
     {
         rt_thread_startup(tid);
     }
-    LOG_D("flex_btn init.");
+    rt_kprintf("flex_btn init.\r\n");
     return 0;
 }
 #ifdef FINSH_USING_MSH

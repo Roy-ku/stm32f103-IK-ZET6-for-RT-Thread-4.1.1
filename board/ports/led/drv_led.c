@@ -79,7 +79,7 @@ int user_led_init(void)
     rt_pin_mode(PIN_LED2, PIN_MODE_OUTPUT);
     rt_pin_mode(PIN_LED3, PIN_MODE_OUTPUT);
     rt_pin_mode(PIN_LED4, PIN_MODE_OUTPUT);
-    LOG_D("led init.");
+    rt_kprintf("led init.\r\n");
     return 0;
 }
 #ifdef FINSH_USING_MSH

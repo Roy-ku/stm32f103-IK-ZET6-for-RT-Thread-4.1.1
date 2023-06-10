@@ -186,6 +186,8 @@
 #define BSP_USING_KEY
 #define BSP_USING_LED
 #define BSP_USING_BEEP
+#define BSP_USING_ESP01S
+#define ESP01S_UART_NAME "uart3"
 
 /* On-chip Peripheral Drivers */
 

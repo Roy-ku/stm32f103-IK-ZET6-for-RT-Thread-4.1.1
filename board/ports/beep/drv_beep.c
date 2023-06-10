@@ -18,7 +18,7 @@ static int user_beep_init(void);
 static int user_beep_init(void)
 {
 	beep_init(PIN_BEEP, PIN_LOW);
-  LOG_D("beep init.");
+  rt_kprintf("beep init.\r\n");
   return 0;
 }
 #ifdef FINSH_USING_MSH
