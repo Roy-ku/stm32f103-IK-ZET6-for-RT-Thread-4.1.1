@@ -341,7 +341,7 @@ int flex_button_main(void)
         rt_thread_startup(tid);
     }
     rt_kprintf("flex_btn init.\r\n");
-    return 0;
+    return RT_EOK;
 }
 #ifdef FINSH_USING_MSH
 INIT_DEVICE_EXPORT(flex_button_main);

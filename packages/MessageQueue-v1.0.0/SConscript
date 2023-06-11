@@ -1,0 +1,12 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('MessageQueue.c')
+
+CPPPATH = [cwd]
+
+group = DefineGroup('MessageQueue', src, depend = ['PKG_USING_MESSAGEQUEUE'], CPPPATH = CPPPATH)
+
+Return('group')

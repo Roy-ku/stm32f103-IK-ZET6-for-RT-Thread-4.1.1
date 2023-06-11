@@ -81,6 +81,8 @@
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_I2C
+#define RT_USING_I2C_BITOPS
 #define RT_USING_PIN
 
 /* Using USB */
@@ -162,6 +164,9 @@
 
 /* peripheral libraries and drivers */
 
+#define PKG_USING_PCF8574
+#define PKG_USING_PCF8574_SAMPLE
+#define PKG_USING_PCF8574_LATEST_VERSION
 #define PKG_USING_BEEP
 #define PKG_BEEP_ACTIVE_BUZZER
 #define PKG_BEEP_USING_MSH_CMD
@@ -188,6 +193,7 @@
 #define BSP_USING_BEEP
 #define BSP_USING_ESP01S
 #define ESP01S_UART_NAME "uart3"
+#define BSP_USING_PCF8574
 
 /* On-chip Peripheral Drivers */
 
@@ -196,6 +202,12 @@
 #define BSP_USING_UART1
 #define BSP_UART1_RX_USING_DMA
 #define BSP_USING_UART3
+#define BSP_USING_I2C1
+
+/* Notice: PB6 --> 22; PB7 --> 23 */
+
+#define BSP_I2C1_SCL_PIN 22
+#define BSP_I2C1_SDA_PIN 23
 
 /* Board extended module Drivers */
 

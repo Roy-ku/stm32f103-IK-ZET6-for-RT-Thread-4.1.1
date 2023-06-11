@@ -56,7 +56,7 @@ static void data_parsing_thread_entry(void *parameter)
     while (1)
     {
         ch = uart_get_char();
-        rt_device_write(esp01s_serial, 0, &ch, 1);
+        //rt_device_write(esp01s_serial, 0, &ch, 1);
         if (ch == DATA_CMD_END)
         {
             data[i++] = '\0';
@@ -73,7 +73,7 @@ static int user_esp01s_init(void)
 {
     rt_err_t ret = RT_EOK;
     char uart_name[RT_NAME_MAX];
-    char str[] = "AT";
+    char str[] = "AT\r\n";
 
     rt_strncpy(uart_name, ESP01S_UART_NAME, RT_NAME_MAX);
 
@@ -85,7 +85,14 @@ static int user_esp01s_init(void)
         return RT_ERROR;
     }
 
-    /* 初始化信号量 */
+    struct serial_configure config = RT_SERIAL_CONFIG_DEFAULT;
+    config.baud_rate  =  BAUD_RATE_9600;
+    if(RT_EOK != rt_device_control(esp01s_serial, RT_DEVICE_CTRL_CONFIG, &config))
+    {
+        rt_kprintf("[%s] config change failed!\n", uart_name);
+    }
+
+    /* 初始化信號量 */
     rt_sem_init(&esp01s_sem, "esp01s_sem", 0, RT_IPC_FLAG_FIFO);
     /* 以中斷接收及輪詢發送模式打開串口設備 */
     rt_device_open(esp01s_serial, RT_DEVICE_FLAG_INT_RX);

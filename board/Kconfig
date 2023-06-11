@@ -40,6 +40,13 @@ menu "Onboard Peripheral Drivers"
         If you select "BSP_USING_ESP01S" Please select "uart3".
     endif
 
+    config BSP_USING_PCF8574
+    bool "Enable onboard pcf8574"
+    select RT_USING_PIN
+    select BSP_USING_I2C1
+    select PKG_USING_PCF8574
+    default n
+
 endmenu
 
 menu "On-chip Peripheral Drivers"
@@ -48,13 +55,13 @@ menu "On-chip Peripheral Drivers"
         bool "Enable GPIO"
         select RT_USING_PIN
         default y
-
+# ---------------------UART--------------------- #
     menuconfig BSP_USING_UART
         bool "Enable UART"
         default y
         select RT_USING_SERIAL
         if BSP_USING_UART
-# ---------------------BSP_UART1---------------------
+
             config BSP_USING_UART1
                 bool "Enable UART1"
                 default y
@@ -63,7 +70,7 @@ menu "On-chip Peripheral Drivers"
                 bool "Enable UART1 RX DMA"
                 depends on BSP_USING_UART1 && RT_SERIAL_USING_DMA
                 default n
-# ---------------------BSP_UART2---------------------
+
             config BSP_USING_UART2
                 bool "Enable UART2"
                 default n
@@ -72,7 +79,7 @@ menu "On-chip Peripheral Drivers"
                 bool "Enable UART2 RX DMA"
                 depends on BSP_USING_UART2 && RT_SERIAL_USING_DMA
                 default n
-# ---------------------BSP_UART3---------------------
+
             config BSP_USING_UART3
                 bool "Enable UART3"
                 select RT_USING_PIN
@@ -83,7 +90,28 @@ menu "On-chip Peripheral Drivers"
                 depends on BSP_USING_UART3 && RT_SERIAL_USING_DMA
                 default n
         endif
-
+# ---------------------I2C--------------------- #
+    menuconfig BSP_USING_I2C1
+    bool "Enable I2C1 BUS (software simulation)"
+    default n
+    select RT_USING_I2C
+    select RT_USING_I2C_BITOPS
+    select RT_USING_PIN
+    if BSP_USING_I2C1
+        comment "Notice: PB6 --> 22; PB7 --> 23"
+        config BSP_I2C1_SCL_PIN
+            int "I2C1 scl pin number"
+            range 22 22
+            default 22
+            help
+            Fixed to PB6 (22).
+        config BSP_I2C1_SDA_PIN
+            int "I2C1 sda pin number"
+            range 23 23
+            default 23
+            help
+            Fixed to PB7 (23).
+    endif
     source "../libraries/HAL_Drivers/Kconfig"
 
 endmenu

@@ -32,6 +32,19 @@ void led_config(user_led_t led, user_led_state_t state)
         {
             rt_pin_write(PIN_LED1, PIN_HIGH);
         }
+        else if (state == TOGGLE)
+        {
+            rt_uint8_t pin_state;
+            pin_state = rt_pin_read(PIN_LED1);
+            if (pin_state == 1)
+            {
+                rt_pin_write(PIN_LED1, PIN_LOW);
+            }
+            else if (pin_state == 0)
+            {
+                rt_pin_write(PIN_LED1, PIN_HIGH);
+            }
+        }
         break;
 
     case LED_2:
@@ -42,6 +55,19 @@ void led_config(user_led_t led, user_led_state_t state)
         else if (state == OFF)
         {
             rt_pin_write(PIN_LED2, PIN_HIGH);
+        }
+        else if (state == TOGGLE)
+        {
+            rt_uint8_t pin_state;
+            pin_state = rt_pin_read(PIN_LED2);
+            if (pin_state == 1)
+            {
+                rt_pin_write(PIN_LED2, PIN_LOW);
+            }
+            else if (pin_state == 0)
+            {
+                rt_pin_write(PIN_LED2, PIN_HIGH);
+            }
         }
         break;
 
@@ -54,6 +80,19 @@ void led_config(user_led_t led, user_led_state_t state)
         {
             rt_pin_write(PIN_LED3, PIN_HIGH);
         }
+        else if (state == TOGGLE)
+        {
+            rt_uint8_t pin_state;
+            pin_state = rt_pin_read(PIN_LED3);
+            if (pin_state == 1)
+            {
+                rt_pin_write(PIN_LED3, PIN_LOW);
+            }
+            else if (pin_state == 0)
+            {
+                rt_pin_write(PIN_LED3, PIN_HIGH);
+            }
+        }
         break;
 
     case LED_4:
@@ -64,6 +103,19 @@ void led_config(user_led_t led, user_led_state_t state)
         else if (state == OFF)
         {
             rt_pin_write(PIN_LED4, PIN_HIGH);
+        }
+        else if (state == TOGGLE)
+        {
+            rt_uint8_t pin_state;
+            pin_state = rt_pin_read(PIN_LED4);
+            if (pin_state == 1)
+            {
+                rt_pin_write(PIN_LED4, PIN_LOW);
+            }
+            else if (pin_state == 0)
+            {
+                rt_pin_write(PIN_LED4, PIN_HIGH);
+            }
         }
         break;
 
@@ -80,7 +132,7 @@ int user_led_init(void)
     rt_pin_mode(PIN_LED3, PIN_MODE_OUTPUT);
     rt_pin_mode(PIN_LED4, PIN_MODE_OUTPUT);
     rt_kprintf("led init.\r\n");
-    return 0;
+    return RT_EOK;
 }
 #ifdef FINSH_USING_MSH
 INIT_DEVICE_EXPORT(user_led_init);

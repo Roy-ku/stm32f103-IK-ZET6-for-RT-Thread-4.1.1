@@ -19,7 +19,7 @@ static int user_beep_init(void)
 {
 	beep_init(PIN_BEEP, PIN_LOW);
   rt_kprintf("beep init.\r\n");
-  return 0;
+  return RT_EOK;
 }
 #ifdef FINSH_USING_MSH
 INIT_DEVICE_EXPORT(user_beep_init);

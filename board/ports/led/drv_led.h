@@ -19,6 +19,8 @@ typedef enum
 {
     ON = 1,
     OFF,
+    TOGGLE,
+
 } user_led_state_t;
 int user_led_init(void);
 void led_config(user_led_t led, user_led_state_t state);

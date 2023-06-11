@@ -1,0 +1,17 @@
+[
+ {
+  "path": "/packages/peripherals/pcf8574", 
+  "ver": "latest", 
+  "name": "PCF8574"
+ }, 
+ {
+  "path": "/packages/peripherals/beep", 
+  "ver": "v1.1.0", 
+  "name": "BEEP"
+ }, 
+ {
+  "path": "/packages/misc/FlexibleButton", 
+  "ver": "v1.0.0", 
+  "name": "FLEXIBLE_BUTTON"
+ }
+]

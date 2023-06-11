@@ -61,9 +61,9 @@ void led_task_entry(void *parameter)
 {
     while (1)
     {
-        led_config(LED_2, ON);
+        led_config(LED_2, TOGGLE);
         rt_thread_delay(1000);
-        led_config(LED_2, OFF);
-        rt_thread_delay(1000);
+        // led_config(LED_2, OFF);
+        // rt_thread_delay(1000);
     }
 }
