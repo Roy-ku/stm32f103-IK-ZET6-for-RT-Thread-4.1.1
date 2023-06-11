@@ -18,8 +18,19 @@
 #define LOG_LVL LOG_LVL_DBG
 #include <ulog.h>
 #endif
+#ifdef BSP_USING_PCF8574
 
-rt_uint8_t pcf8574_port_read(pcf8574_device_t dev)
+static rt_uint8_t pcf8574_port_read(pcf8574_device_t dev);
+static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t port_val);
+
+/**
+ * This function read the data port of pcf8574.
+ *
+ * @param dev the pointer of device structure
+ *
+ * @return the state of data port. 0xFF meas all pin is high.
+ */
+static rt_uint8_t pcf8574_port_read(pcf8574_device_t dev)
 {
     rt_uint8_t value;
 
@@ -28,7 +39,13 @@ rt_uint8_t pcf8574_port_read(pcf8574_device_t dev)
     return value;
 }
 
-void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t value)
+/**
+ * This function sets the status of the data port.
+ *
+ * @param dev the pointer of device structure
+ * @param port_val the port value you want to set, 0xFF meas all pin output high.
+ */
+static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t value)
 {
     rt_device_write(&dev->bus->parent, dev->i2c_addr, &value, 1);
 }
@@ -67,14 +84,14 @@ pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr)
     dev = rt_calloc(1, sizeof(struct pcf8574_device));
     if (dev == RT_NULL)
     {
-        LOG_E("Can't allocate memory for pcf8574 device on '%s' ", dev_name);
+        rt_kprintf("Can't allocate memory for pcf8574 device on '%s' \r\n", dev_name);
         goto __exit;
     }
 
     dev->bus = (struct rt_i2c_bus_device *)rt_device_find(dev_name);
     if (dev->bus == RT_NULL)
     {
-        LOG_E("i2c_bus %s for PCF8574 not found!", dev_name);
+        rt_kprintf("i2c_bus %s for PCF8574 not found!\r\n", dev_name);
         goto __exit;
     }
 
@@ -85,13 +102,14 @@ pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr)
 
     if (rt_device_open(&dev->bus->parent, RT_NULL) != RT_EOK)
     {
-        LOG_D("i2c_bus %s for PCF8574 opened failed!", dev_name);
+        rt_kprintf("i2c_bus %s for PCF8574 opened failed!\r\n", dev_name);
         goto __exit;
     }
 
+    /* 讓pcf8574 所有PIN預設為 HIGH */
     rt_device_write(&dev->bus->parent, dev->i2c_addr, &buffer, 1);
 
-    LOG_D("pcf8574 init done", dev_name);
+    rt_kprintf("pcf8574(%s) init.\r\n", dev_name);
     return dev;
 
 __exit:
@@ -107,3 +125,4 @@ void pcf8574_deinit(struct pcf8574_device *dev)
 
     rt_free(dev);
 }
+#endif /* BSP_USING_PCF8574 */

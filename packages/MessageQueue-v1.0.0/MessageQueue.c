@@ -42,7 +42,7 @@ int MQ_InitMsg(void)
 	{
 		rt_kprintf("MessageQueue init.\r\n");
 	}
-	return 0;
+	return result;
 }
 
 /**

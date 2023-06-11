@@ -17,7 +17,7 @@
 #include <rtdevice.h>
 
 #define PCF8574_ADDR_DEFAULT    0x20 //0x20
-
+#define PCF8574_I2C_BUS "i2c1"
 /* pcf8574 device structure */
 struct pcf8574_device
 {
@@ -42,23 +42,6 @@ pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr);
  * @param dev the pointer of device structure
  */
 void pcf8574_deinit(struct pcf8574_device *dev);
-
-/**
- * This function read the data port of pcf8574.
- *
- * @param dev the pointer of device structure
- *
- * @return the state of data port. 0xFF meas all pin is high.
- */
-rt_uint8_t pcf8574_port_read(pcf8574_device_t dev);
-
-/**
- * This function sets the status of the data port.
- *
- * @param dev the pointer of device structure
- * @param port_val the port value you want to set, 0xFF meas all pin output high.
- */
-void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t port_val);
 
 /**
  * This function read the specified port pin of the pcf8574.
