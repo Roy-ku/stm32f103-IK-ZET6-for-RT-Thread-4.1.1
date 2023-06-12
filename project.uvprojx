@@ -559,24 +559,24 @@
               <FilePath>board\board.c</FilePath>
             </File>
             <File>
-              <FileName>drv_beep.c</FileName>
+              <FileName>bsp_beep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>board\ports\beep\drv_beep.c</FilePath>
+              <FilePath>board\ports\beep\bsp_beep.c</FilePath>
             </File>
             <File>
-              <FileName>drv_esp01s.c</FileName>
+              <FileName>bsp_esp01s.c</FileName>
               <FileType>1</FileType>
-              <FilePath>board\ports\esp01s\drv_esp01s.c</FilePath>
+              <FilePath>board\ports\esp01s\bsp_esp01s.c</FilePath>
             </File>
             <File>
-              <FileName>drv_key.c</FileName>
+              <FileName>bsp_key.c</FileName>
               <FileType>1</FileType>
-              <FilePath>board\ports\key\drv_key.c</FilePath>
+              <FilePath>board\ports\key\bsp_key.c</FilePath>
             </File>
             <File>
-              <FileName>drv_led.c</FileName>
+              <FileName>bsp_led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>board\ports\led\drv_led.c</FilePath>
+              <FilePath>board\ports\led\bsp_led.c</FilePath>
             </File>
             <File>
               <FileName>drv_common.c</FileName>

@@ -18,7 +18,12 @@
 #define LOG_LVL LOG_LVL_DBG
 #include <ulog.h>
 #endif
-#ifdef BSP_USING_PCF8574
+#ifdef PKG_USING_PCF8574
+
+#define PCF8574T_CLEAR_BIT(x, bit) (x &= ~(1 << bit))      /* 清零第bit位 */
+#define PCF8574T_SET_BIT(x, bit) (x |= (1 << bit))         /* 置位第bit位 */
+#define PCF8574T_TOGGLE_BIT(x, bit) (x ^= (1 << bit))      /* 反轉第bit位 */
+#define PCF8574T_GET_BIT(x, bit) ((x & (1 << bit)) >> bit) /* 獲取第bit位 */
 
 static rt_uint8_t pcf8574_port_read(pcf8574_device_t dev);
 static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t port_val);
@@ -50,33 +55,57 @@ static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t value)
     rt_device_write(&dev->bus->parent, dev->i2c_addr, &value, 1);
 }
 
-rt_uint8_t pcf8574_pin_read(pcf8574_device_t dev, rt_uint8_t bit)
+/**
+ * This function read the specified port pin of the pcf8574.
+ *
+ * @param dev the pointer of device structure
+ * @param pin the specified pin of the data port
+ *
+ * @return the status of the specified data port pin, 0 is low, 1 is high.
+ */
+rt_uint8_t pcf8574_pin_read(pcf8574_device_t dev, rt_uint8_t pin)
 {
     rt_uint8_t data;
     data = pcf8574_port_read(dev);
 
-    if (data & (1 << bit))
+    if (PCF8574T_GET_BIT(data, pin))
         return 1;
     else
         return 0;
 }
 
-void pcf8574_pin_write(pcf8574_device_t dev, rt_uint8_t bit, rt_uint8_t value)
+/**
+ * This function sets the status of the specified port pin.
+ *
+ * @param dev the pointer of device structure
+ * @param pin_val the specified pin value you want to set, 0 is low, 1 is high.
+ */
+void pcf8574_pin_write(pcf8574_device_t dev, rt_uint8_t pin, rt_uint8_t pin_val)
 {
     rt_uint8_t data;
     data = pcf8574_port_read(dev);
 
-    if (value == 0)
-        data &= ~(1 << bit);
+    if (pin_val == 0)
+        // data &= ~(1 << pin);
+        PCF8574T_CLEAR_BIT(data, pin);
     else
-        data |= 1 << bit;
+        // data |= 1 << pin;
+        PCF8574T_SET_BIT(data, pin);
 
     pcf8574_port_write(dev, data);
 }
 
+/**
+ * This function initialize the pcf8574 device.
+ *
+ * @param dev_name the name of i2c bus device
+ * @param i2c_addr the i2c device address for i2c communication,RT_NULL use default address
+ *
+ * @return the pointer of device structure, RT_NULL reprensents  initialization failed.
+ */
 pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr)
 {
-    rt_uint8_t buffer[] = { 0xFF };
+    rt_uint8_t buffer[] = {0xFF};
     pcf8574_device_t dev = RT_NULL;
 
     RT_ASSERT(dev_name);
@@ -106,7 +135,7 @@ pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr)
         goto __exit;
     }
 
-    /* 讓pcf8574 所有PIN預設為 HIGH */
+    /* 讓 pcf8574 所有PIN預設為 HIGH */
     rt_device_write(&dev->bus->parent, dev->i2c_addr, &buffer, 1);
 
     rt_kprintf("pcf8574(%s) init.\r\n", dev_name);
@@ -114,15 +143,22 @@ pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr)
 
 __exit:
     if (dev != RT_NULL)
+    {
+        rt_device_close(&dev->bus->parent);
         rt_free(dev);
-
+    }
     return RT_NULL;
 }
 
+/**
+ * This function releases memory
+ *
+ * @param dev the pointer of device structure
+ */
 void pcf8574_deinit(struct pcf8574_device *dev)
 {
     RT_ASSERT(dev);
-
+    rt_device_close(&dev->bus->parent);
     rt_free(dev);
 }
-#endif /* BSP_USING_PCF8574 */
+#endif /* PKG_USING_PCF8574 */

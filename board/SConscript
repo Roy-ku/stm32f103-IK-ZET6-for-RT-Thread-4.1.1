@@ -13,16 +13,16 @@ CubeMX_Config/Src/stm32f1xx_hal_msp.c
 ''')
 
 if GetDepend(['BSP_USING_KEY']):
-    src += Glob('ports/key/drv_key.c')
+    src += Glob('ports/key/bsp_key.c')
 
 if GetDepend(['BSP_USING_LED']):
-    src += Glob('ports/led/drv_led.c')
+    src += Glob('ports/led/bsp_led.c')
 
 if GetDepend(['BSP_USING_BEEP']):
-    src += Glob('ports/beep/drv_beep.c')
+    src += Glob('ports/beep/bsp_beep.c')
 
 if GetDepend(['BSP_USING_ESP01S']):
-    src += Glob('ports/esp01s/drv_esp01s.c')
+    src += Glob('ports/esp01s/bsp_esp01s.c')
 
 path =  [cwd]
 path += [cwd + '/CubeMX_Config/Inc']

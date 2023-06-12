@@ -17,8 +17,8 @@
 #define TEST_IO 0 //(0-7)
 
 pcf8574_device_t dev = RT_NULL;
-static int pcf8574_set(void);
-static int pcf8574_set(void)
+static int bsp_pcf8574_init(void);
+static int bsp_pcf8574_init(void)
 {
     dev = pcf8574_init(PCF8574_I2C_BUS, RT_NULL);
 
@@ -27,10 +27,10 @@ static int pcf8574_set(void)
     return RT_ERROR;
 }
 #ifdef FINSH_USING_MSH
-INIT_DEVICE_EXPORT(pcf8574_set);
+INIT_DEVICE_EXPORT(bsp_pcf8574_init);
 #endif /* FINSH_USING_MSH */
 
-int pcf8574_sample(void)
+int bsp_pcf8574_sample(void)
 {
     rt_uint8_t value;
 
@@ -51,6 +51,6 @@ int pcf8574_sample(void)
     return RT_EOK;
 }
 #ifdef FINSH_USING_MSH
-MSH_CMD_EXPORT(pcf8574_sample, a pcf8574 sample);
+MSH_CMD_EXPORT(bsp_pcf8574_sample, a pcf8574 sample);
 #endif
 #endif /* BSP_USING_PCF8574 */

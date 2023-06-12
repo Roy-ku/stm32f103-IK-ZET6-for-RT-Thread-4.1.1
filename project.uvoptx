@@ -552,7 +552,7 @@
 
   <Group>
     <GroupName>Drivers</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -599,8 +599,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>board\ports\beep\drv_beep.c</PathWithFileName>
-      <FilenameWithoutPath>drv_beep.c</FilenameWithoutPath>
+      <PathWithFileName>board\ports\beep\bsp_beep.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_beep.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -611,8 +611,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>board\ports\esp01s\drv_esp01s.c</PathWithFileName>
-      <FilenameWithoutPath>drv_esp01s.c</FilenameWithoutPath>
+      <PathWithFileName>board\ports\esp01s\bsp_esp01s.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_esp01s.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -623,8 +623,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>board\ports\key\drv_key.c</PathWithFileName>
-      <FilenameWithoutPath>drv_key.c</FilenameWithoutPath>
+      <PathWithFileName>board\ports\key\bsp_key.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_key.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -635,8 +635,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>board\ports\led\drv_led.c</PathWithFileName>
-      <FilenameWithoutPath>drv_led.c</FilenameWithoutPath>
+      <PathWithFileName>board\ports\led\bsp_led.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_led.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1108,7 +1108,7 @@
 
   <Group>
     <GroupName>MessageQueue</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1128,7 +1128,7 @@
 
   <Group>
     <GroupName>pcf8574</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1148,7 +1148,7 @@
       <GroupNumber>12</GroupNumber>
       <FileNumber>73</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>packages\pcf8574-latest\pcf8574.c</PathWithFileName>

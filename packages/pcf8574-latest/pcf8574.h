@@ -16,8 +16,11 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 
-#define PCF8574_ADDR_DEFAULT    0x20 //0x20
+#ifdef  PKG_USING_PCF8574
+
+#define PCF8574_ADDR_DEFAULT    0x20
 #define PCF8574_I2C_BUS "i2c1"
+
 /* pcf8574 device structure */
 struct pcf8574_device
 {
@@ -26,40 +29,11 @@ struct pcf8574_device
 };
 typedef struct pcf8574_device *pcf8574_device_t;
 
-/**
- * This function initialize the pcf8574 device.
- *
- * @param dev_name the name of i2c bus device
- * @param i2c_addr the i2c device address for i2c communication,RT_NULL use default address
- *
- * @return the pointer of device structure, RT_NULL reprensents  initialization failed.
- */
 pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr);
-
-/**
- * This function releases memory
- *
- * @param dev the pointer of device structure
- */
 void pcf8574_deinit(struct pcf8574_device *dev);
-
-/**
- * This function read the specified port pin of the pcf8574.
- *
- * @param dev the pointer of device structure
- * @param pin the specified pin of the data port
- *
- * @return the status of the specified data port pin, 0 is low, 1 is high.
- */
 rt_uint8_t pcf8574_pin_read(pcf8574_device_t dev, rt_uint8_t pin);
-
-/**
- * This function sets the status of the specified port pin.
- *
- * @param dev the pointer of device structure
- * @param pin_val the specified pin value you want to set, 0 is low, 1 is high.
- */
 void pcf8574_pin_write(pcf8574_device_t dev, rt_uint8_t pin, rt_uint8_t pin_val);
 
-#endif
+#endif /* PKG_USING_PCF8574 */
+#endif /* __PCF8574_H */
 
