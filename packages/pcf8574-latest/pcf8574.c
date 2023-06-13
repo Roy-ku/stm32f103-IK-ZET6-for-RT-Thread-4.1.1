@@ -63,7 +63,7 @@ static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t value)
  *
  * @return the status of the specified data port pin, 0 is low, 1 is high.
  */
-rt_uint8_t pcf8574_pin_read(pcf8574_device_t dev, rt_uint8_t pin)
+rt_uint8_t pcf8574_pin_read(pcf8574_device_t dev, pcf8574_pin_t pin)
 {
     rt_uint8_t data;
     data = pcf8574_port_read(dev);
@@ -80,7 +80,7 @@ rt_uint8_t pcf8574_pin_read(pcf8574_device_t dev, rt_uint8_t pin)
  * @param dev the pointer of device structure
  * @param pin_val the specified pin value you want to set, 0 is low, 1 is high.
  */
-void pcf8574_pin_write(pcf8574_device_t dev, rt_uint8_t pin, rt_uint8_t pin_val)
+void pcf8574_pin_write(pcf8574_device_t dev, pcf8574_pin_t pin, rt_uint8_t pin_val)
 {
     rt_uint8_t data;
     data = pcf8574_port_read(dev);
@@ -92,6 +92,14 @@ void pcf8574_pin_write(pcf8574_device_t dev, rt_uint8_t pin, rt_uint8_t pin_val)
         // data |= 1 << pin;
         PCF8574T_SET_BIT(data, pin);
 
+    pcf8574_port_write(dev, data);
+}
+
+void pcf8574_pin_toggle(pcf8574_device_t dev, pcf8574_pin_t pin)
+{
+    rt_uint8_t data;
+    data = pcf8574_port_read(dev);
+    PCF8574T_TOGGLE_BIT(data,pin);
     pcf8574_port_write(dev, data);
 }
 

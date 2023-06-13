@@ -24,6 +24,9 @@ if GetDepend(['BSP_USING_BEEP']):
 if GetDepend(['BSP_USING_ESP01S']):
     src += Glob('ports/esp01s/bsp_esp01s.c')
 
+if GetDepend(['BSP_USING_PCF8574']):
+    src += Glob('ports/pcf8574/bsp_pcf8574.c')
+
 path =  [cwd]
 path += [cwd + '/CubeMX_Config/Inc']
 
@@ -38,6 +41,9 @@ if GetDepend(['BSP_USING_BEEP']):
 
 if GetDepend(['BSP_USING_ESP01S']):
     path += [cwd + '/ports/esp01s']
+
+if GetDepend(['BSP_USING_PCF8574']):
+    path += [cwd + '/ports/pcf8574']
 
 startup_path_prefix = SDK_LIB
 

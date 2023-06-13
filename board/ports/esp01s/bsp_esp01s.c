@@ -71,7 +71,6 @@ static void bsp_data_parsing_thread_entry(void *parameter)
 
 static int bsp_esp01s_init(void)
 {
-    rt_err_t ret = RT_EOK;
     char uart_name[RT_NAME_MAX];
     char str[] = "AT\r\n";
 

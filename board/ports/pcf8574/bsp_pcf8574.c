@@ -14,7 +14,7 @@
 
 #ifdef BSP_USING_PCF8574
 
-#define TEST_IO 0 //(0-7)
+#define TEST_IO P0 //(0-7)
 
 pcf8574_device_t dev = RT_NULL;
 static int bsp_pcf8574_init(void);
@@ -52,5 +52,14 @@ int bsp_pcf8574_sample(void)
 }
 #ifdef FINSH_USING_MSH
 MSH_CMD_EXPORT(bsp_pcf8574_sample, a pcf8574 sample);
+#endif
+
+int bsp_pcf8574_toggle(void)
+{
+    pcf8574_pin_toggle(dev,TEST_IO);
+    return RT_EOK;
+}
+#ifdef FINSH_USING_MSH
+MSH_CMD_EXPORT(bsp_pcf8574_toggle, a pcf8574 toggle);
 #endif
 #endif /* BSP_USING_PCF8574 */
