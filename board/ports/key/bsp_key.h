@@ -12,4 +12,4 @@ extern "C" {
 }
 #endif
 
-#endif /* __DRV_GPIO_H__ */
+#endif /* __DRV_KEY_H__ */

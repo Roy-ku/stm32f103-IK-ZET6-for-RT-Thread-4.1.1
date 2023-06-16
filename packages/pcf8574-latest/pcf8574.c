@@ -25,8 +25,22 @@
 #define PCF8574T_TOGGLE_BIT(x, bit) (x ^= (1 << bit))      /* 反轉第bit位 */
 #define PCF8574T_GET_BIT(x, bit) ((x & (1 << bit)) >> bit) /* 獲取第bit位 */
 
-static rt_uint8_t pcf8574_port_read(pcf8574_device_t dev);
-static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t port_val);
+static void pcf8574_irq_callback(void *args);
+
+static void pcf8574_irq_callback(void *args)
+{
+    rt_tick_t tick = 0;
+    static rt_tick_t tick_old = 0;
+    tick = rt_tick_get();
+    if (tick - tick_old > 10)
+    {
+        // rt_pin_detach_irq(PCF8574_INT_PIN);
+        rt_pin_irq_enable(PCF8574_INT_PIN, PIN_IRQ_DISABLE);
+        MQ_PutMsg(MSG_PCF8574_INT, RT_NULL);
+        LOG_D("pcf8574_irq_callback.");
+    }
+    tick_old = tick;
+}
 
 /**
  * This function read the data port of pcf8574.
@@ -35,7 +49,7 @@ static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t port_val);
  *
  * @return the state of data port. 0xFF meas all pin is high.
  */
-static rt_uint8_t pcf8574_port_read(pcf8574_device_t dev)
+rt_uint8_t pcf8574_port_read(pcf8574_device_t dev)
 {
     rt_uint8_t value;
 
@@ -50,7 +64,7 @@ static rt_uint8_t pcf8574_port_read(pcf8574_device_t dev)
  * @param dev the pointer of device structure
  * @param port_val the port value you want to set, 0xFF meas all pin output high.
  */
-static void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t value)
+void pcf8574_port_write(pcf8574_device_t dev, rt_uint8_t value)
 {
     rt_device_write(&dev->bus->parent, dev->i2c_addr, &value, 1);
 }
@@ -95,11 +109,17 @@ void pcf8574_pin_write(pcf8574_device_t dev, pcf8574_pin_t pin, rt_uint8_t pin_v
     pcf8574_port_write(dev, data);
 }
 
+/**
+ * This function toggle the status of the specified port pin.
+ *
+ * @param dev the pointer of device structure
+ * @param pin_val the specified pin value you want to set, 0 is low, 1 is high.
+ */
 void pcf8574_pin_toggle(pcf8574_device_t dev, pcf8574_pin_t pin)
 {
     rt_uint8_t data;
     data = pcf8574_port_read(dev);
-    PCF8574T_TOGGLE_BIT(data,pin);
+    PCF8574T_TOGGLE_BIT(data, pin);
     pcf8574_port_write(dev, data);
 }
 
@@ -115,8 +135,22 @@ pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr)
 {
     rt_uint8_t buffer[] = {0xFF};
     pcf8574_device_t dev = RT_NULL;
-
     RT_ASSERT(dev_name);
+
+    /* 配置INT引脚為上拉输入 */
+    rt_pin_mode(PCF8574_INT_PIN, PIN_MODE_INPUT_PULLUP);
+    /* 绑定中斷回調，下降沿模式 */
+    if (rt_pin_attach_irq(PCF8574_INT_PIN, PIN_IRQ_MODE_FALLING, pcf8574_irq_callback, RT_NULL) == RT_EOK)
+    {
+        rt_kprintf("PCF8574_INT_PIN set ok.\r\n");
+    }
+    else
+    {
+        rt_kprintf("PCF8574_INT_PIN set error.\r\n");
+    }
+
+    /* 使能引脚中断 */
+    rt_pin_irq_enable(PCF8574_INT_PIN, PIN_IRQ_ENABLE);
 
     dev = rt_calloc(1, sizeof(struct pcf8574_device));
     if (dev == RT_NULL)

@@ -13,6 +13,7 @@ typedef enum
 
 	MSG_Btn2,
 	MSG_Btn3,
+	MSG_PCF8574_INT,
 
 
 } MSG_INFO;

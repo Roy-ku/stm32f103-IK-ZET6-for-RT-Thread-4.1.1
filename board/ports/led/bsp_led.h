@@ -28,4 +28,4 @@ void led_config(user_led_t led, user_led_state_t state);
 }
 #endif
 
-#endif /* __DRV_GPIO_H__ */
+#endif /* __DRV_LED_H__ */

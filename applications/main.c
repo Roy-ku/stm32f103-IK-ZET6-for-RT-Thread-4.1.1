@@ -42,6 +42,7 @@ int main(void)
         LOG_D("enter main thread.");
         if (MQ_GetMsg(&msg))
         {
+			      rt_uint8_t data = 0;
             switch (msg.MsgCode)
             {
             case MSG_Btn2:
@@ -49,6 +50,12 @@ int main(void)
                 break;
             case MSG_Btn3:
                 LOG_D("MSG_Btn3");
+                break;
+            case MSG_PCF8574_INT:
+                
+                data = pcf8574_port_read(pcf8574_dev);
+                LOG_D("data = %x", data);
+                rt_pin_irq_enable(PCF8574_INT_PIN, PIN_IRQ_ENABLE);
                 break;
             default:
                 break;
