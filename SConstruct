@@ -41,6 +41,11 @@ if os.path.exists(SDK_ROOT + '/libraries'):
 else:
     libraries_path_prefix = os.path.dirname(SDK_ROOT) + '/libraries'
 
+if os.path.exists(RTT_ROOT + '/offline-packages'):
+    offline_pkgs_path_prefix = RTT_ROOT + '/offline-packages'
+else:
+    offline_pkgs_path_prefix = os.path.dirname(RTT_ROOT) + '/offline-packages'
+
 SDK_LIB = libraries_path_prefix
 Export('SDK_LIB')
 
@@ -55,6 +60,9 @@ objs.extend(SConscript(os.path.join(libraries_path_prefix, stm32_library, 'SCons
 
 # include drivers
 objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SConscript')))
+
+# include offline packages
+objs.extend(SConscript(os.path.join(offline_pkgs_path_prefix, 'SConscript')))
 
 # make a building
 DoBuilding(TARGET, objs)

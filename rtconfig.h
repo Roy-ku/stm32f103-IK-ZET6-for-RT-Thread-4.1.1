@@ -4,6 +4,8 @@
 /* Automatically generated file; DO NOT EDIT. */
 /* RT-Thread Configuration */
 
+#define OFFLINE_PKGS_DIR "../../../offline-packages"
+
 /* RT-Thread Kernel */
 
 #define RT_NAME_MAX 8
@@ -155,9 +157,6 @@
 
 /* tools packages */
 
-#define PKG_USING_MESSAGEQUEUE
-#define MSG_FIFO_TOTAL 40
-#define PKG_USING_MESSAGEQUEUE_LATEST_VERSION
 
 /* system packages */
 
@@ -179,6 +178,13 @@
 
 /* samples: kernel and components samples */
 
+
+/* RT-Thread offline packages */
+
+#define PKG_USING_MESSAGEQUEUE
+#define MSG_FIFO_TOTAL 40
+#define BSP_USING_MESSAGEQUEUE
+#define PKG_USING_MESSAGEQUEUE_LATEST_VERSION
 #define SOC_FAMILY_STM32
 #define SOC_SERIES_STM32F1
 

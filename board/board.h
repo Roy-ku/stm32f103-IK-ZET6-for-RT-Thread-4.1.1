@@ -20,7 +20,7 @@
 #include "bsp_beep.h"
 #include "bsp_esp01s.h"
 #include "bsp_pcf8574.h"
-#include "MessageQueue.h"
+#include "bsp_MessageQueue.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
