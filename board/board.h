@@ -21,6 +21,8 @@
 #include "bsp_esp01s.h"
 #include "bsp_pcf8574.h"
 #include "bsp_MessageQueue.h"
+#include "rt_cpu_usage.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

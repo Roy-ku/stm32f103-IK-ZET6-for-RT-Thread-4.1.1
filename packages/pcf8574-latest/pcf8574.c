@@ -180,7 +180,7 @@ pcf8574_device_t pcf8574_init(const char *dev_name, rt_uint8_t i2c_addr)
     /* 讓 pcf8574 所有PIN預設為 HIGH */
     rt_device_write(&dev->bus->parent, dev->i2c_addr, &buffer, 1);
 
-    rt_kprintf("pcf8574(%s) init.\r\n", dev_name);
+    rt_kprintf("pcf8574(%s,0x%x) init.\r\n", dev_name,PCF8574_ADDR_DEFAULT);
     return dev;
 
 __exit:

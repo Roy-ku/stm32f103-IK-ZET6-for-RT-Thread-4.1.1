@@ -28,6 +28,7 @@ void led_task_entry(void *parameter);
 
 int main(void)
 {
+
     // 初始化LED線程
     rt_thread_init(&led_thread, "led", led_task_entry, RT_NULL, &rt_led_thread_stack[0], sizeof(rt_led_thread_stack), 10, 20);
     // 開啟線程調度
@@ -42,7 +43,7 @@ int main(void)
         LOG_D("enter main thread.");
         if (MQ_GetMsg(&msg))
         {
-			      rt_uint8_t data = 0;
+            rt_uint8_t data = 0;
             switch (msg.MsgCode)
             {
             case MSG_Btn2:
@@ -52,7 +53,7 @@ int main(void)
                 LOG_D("MSG_Btn3");
                 break;
             case MSG_PCF8574_INT:
-                
+
                 data = pcf8574_port_read(pcf8574_dev);
                 LOG_D("data = %x", data);
                 rt_pin_irq_enable(PCF8574_INT_PIN, PIN_IRQ_ENABLE);
@@ -66,8 +67,11 @@ int main(void)
 
 void led_task_entry(void *parameter)
 {
+    rt_uint8_t major, minor;
     while (1)
     {
+        cpu_usage_get(&major, &minor);
+        LOG_D("cpu usage: %u.%u%%  ", major, minor);
         led_config(LED_2, TOGGLE);
         rt_thread_delay(1000);
         // led_config(LED_2, OFF);
