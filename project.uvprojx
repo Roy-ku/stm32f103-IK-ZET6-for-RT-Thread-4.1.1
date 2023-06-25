@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>__STDC_LIMIT_MACROS, STM32F103xE, USE_HAL_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __RTTHREAD__, RT_USING_ARM_LIBC</Define>
               <Undefine></Undefine>
-              <IncludePath>applications;.;packages\beep-v1.1.0;..\..\..\components\libc\compilers\common\include;..\..\..\components\libc\compilers\common\extension;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\libcpu\arm\common;..\..\..\libcpu\arm\cortex-m3;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;board;board\CubeMX_Config\Inc;board\ports\key;board\ports\led;board\ports\beep;board\ports\esp01s;board\ports\pcf8574;board\ports\MessageQueue;..\libraries\HAL_Drivers;..\libraries\HAL_Drivers\config;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\finsh;packages\FlexibleButton-v1.0.0;.;..\..\..\include;..\libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include;..\libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc;..\..\..\offline-packages\MessageQueue;packages\pcf8574-latest;..\..\..\offline-packages\CPUusagerate;..\..\..\components\libc\posix\io\poll;..\..\..\components\libc\posix\io\stdio;..\..\..\components\libc\posix\ipc;..\..\..\components\utilities\ulog</IncludePath>
+              <IncludePath>applications;.;..\..\..\components\libc\compilers\common\include;..\..\..\components\libc\compilers\common\extension;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\libcpu\arm\common;..\..\..\libcpu\arm\cortex-m3;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;board;board\CubeMX_Config\Inc;board\ports\key;board\ports\led;board\ports\beep;board\ports\esp01s;board\ports\pcf8574;board\ports\MessageQueue;board\ports\eeprom;..\libraries\HAL_Drivers;..\libraries\HAL_Drivers\config;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\finsh;packages\FlexibleButton-v1.0.0;.;..\..\..\include;..\libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include;..\libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc;packages\beep-v1.1.0;packages\pcf8574-latest;..\..\..\offline-packages\at24cxx;..\..\..\offline-packages\CPUusagerate;..\..\..\offline-packages\MessageQueue;..\..\..\components\libc\posix\io\poll;..\..\..\components\libc\posix\io\stdio;..\..\..\components\libc\posix\ipc;..\..\..\components\utilities\ulog</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -387,16 +387,6 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>beep</GroupName>
-          <Files>
-            <File>
-              <FileName>beep.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\beep-v1.1.0\beep.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -562,6 +552,11 @@
               <FileName>bsp_beep.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\ports\beep\bsp_beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_at24cxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\ports\eeprom\bsp_at24cxx.c</FilePath>
             </File>
             <File>
               <FileName>bsp_esp01s.c</FileName>
@@ -786,12 +781,12 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>MessageQueue</GroupName>
+          <GroupName>Packages</GroupName>
           <Files>
             <File>
-              <FileName>MessageQueue.c</FileName>
+              <FileName>beep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\offline-packages\MessageQueue\MessageQueue.c</FilePath>
+              <FilePath>packages\beep-v1.1.0\beep.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -806,12 +801,32 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>PKG_at24cxx</GroupName>
+          <Files>
+            <File>
+              <FileName>at24cxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\offline-packages\at24cxx\at24cxx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>PKG_cpu_usage</GroupName>
           <Files>
             <File>
               <FileName>rt_cpu_usage.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\offline-packages\CPUusagerate\rt_cpu_usage.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>PKG_MessageQueue</GroupName>
+          <Files>
+            <File>
+              <FileName>MessageQueue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\offline-packages\MessageQueue\MessageQueue.c</FilePath>
             </File>
           </Files>
         </Group>

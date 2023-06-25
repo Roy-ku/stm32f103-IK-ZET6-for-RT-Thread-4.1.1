@@ -27,6 +27,9 @@ if GetDepend(['BSP_USING_ESP01S']):
 if GetDepend(['BSP_USING_PCF8574']):
     src += Glob('ports/pcf8574/bsp_pcf8574.c')
 
+if GetDepend(['BSP_USING_AT24CXX']):
+    src += Glob('ports/eeprom/bsp_at24cxx.c')
+
 path =  [cwd]
 path += [cwd + '/CubeMX_Config/Inc']
 
@@ -47,6 +50,9 @@ if GetDepend(['BSP_USING_PCF8574']):
 
 if GetDepend(['BSP_USING_MESSAGEQUEUE']):
     path += [cwd + '/ports/MessageQueue']
+
+if GetDepend(['BSP_USING_MESSAGEQUEUE']):
+    path += [cwd + '/ports/eeprom']
 
 startup_path_prefix = SDK_LIB
 

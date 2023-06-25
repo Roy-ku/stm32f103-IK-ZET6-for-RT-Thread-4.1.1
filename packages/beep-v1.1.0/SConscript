@@ -3,10 +3,10 @@ Import('rtconfig')
 from building import *
 
 cwd     = GetCurrentDir()
-src     = Glob('beep.c')
+src     = Glob('beep.c') 
 
 CPPPATH = [cwd]
 
-group = DefineGroup('beep', src, depend = ['PKG_USING_BEEP'], CPPPATH = CPPPATH)
+group = DefineGroup('Packages', src, depend = ['PKG_USING_BEEP'], CPPPATH = CPPPATH)
 
 Return('group')

@@ -1,5 +1,5 @@
-#ifndef __DRV_MESSAGE_QUEUE_H__
-#define __DRV_MESSAGE_QUEUE_H__
+#ifndef __BSP_MESSAGE_QUEUE_H__
+#define __BSP_MESSAGE_QUEUE_H__
 
 #include <board.h>
 
@@ -23,4 +23,4 @@ typedef enum
 }
 #endif
 
-#endif /* __DRV_MESSAGE_QUEUE_H__ */
+#endif /* __BSP_MESSAGE_QUEUE_H__ */

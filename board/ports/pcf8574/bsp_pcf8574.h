@@ -1,5 +1,5 @@
-#ifndef __DRV_PCF8574_H__
-#define __DRV_PCF8574_H__
+#ifndef __BSP_PCF8574_H__
+#define __BSP_PCF8574_H__
 
 #include <board.h>
 
@@ -14,4 +14,4 @@ extern "C" {
 }
 #endif
 
-#endif /* __DRV_PCF8574_H__ */
+#endif /* __BSP_PCF8574_H__ */

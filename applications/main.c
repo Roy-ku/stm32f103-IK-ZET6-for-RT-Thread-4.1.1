@@ -67,11 +67,11 @@ int main(void)
 
 void led_task_entry(void *parameter)
 {
-    rt_uint8_t major, minor;
+    // rt_uint8_t major, minor;
     while (1)
     {
-        cpu_usage_get(&major, &minor);
-        LOG_D("cpu usage: %u.%u%%  ", major, minor);
+        // cpu_usage_get(&major, &minor);
+        // LOG_D("cpu usage: %u.%u%%  ", major, minor);
         led_config(LED_2, TOGGLE);
         rt_thread_delay(1000);
         // led_config(LED_2, OFF);

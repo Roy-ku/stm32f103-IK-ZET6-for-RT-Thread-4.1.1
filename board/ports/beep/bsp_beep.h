@@ -1,5 +1,5 @@
-#ifndef __DRV_BEEP_H__
-#define __DRV_BEEP_H__
+#ifndef __BSP_BEEP_H__
+#define __BSP_BEEP_H__
 
 #include <board.h>
 #include <beep.h>
@@ -11,4 +11,4 @@ extern "C" {
 }
 #endif
 
-#endif /* __DRV_GPIO_H__ */
+#endif /* __BSP_GPIO_H__ */

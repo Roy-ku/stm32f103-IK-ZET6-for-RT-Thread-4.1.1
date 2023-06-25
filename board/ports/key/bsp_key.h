@@ -1,5 +1,5 @@
-#ifndef __DRV_KEY_H__
-#define __DRV_KEY_H__
+#ifndef __BSP_KEY_H__
+#define __BSP_KEY_H__
 
 #include <board.h>
 
@@ -12,4 +12,4 @@ extern "C" {
 }
 #endif
 
-#endif /* __DRV_KEY_H__ */
+#endif /* __BSP_KEY_H__ */

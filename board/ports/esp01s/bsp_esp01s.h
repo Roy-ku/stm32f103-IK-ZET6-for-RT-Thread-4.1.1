@@ -1,5 +1,5 @@
-#ifndef __DRV_ESP01S_H__
-#define __DRV_ESP01S_H__
+#ifndef __BSP_ESP01S_H__
+#define __BSP_ESP01S_H__
 
 #include <board.h>
 
@@ -21,4 +21,4 @@ extern "C" {
 }
 #endif
 
-#endif /* __DRV_ESP01S_H__ */
+#endif /* __BSP_ESP01S_H__ */
