@@ -22,34 +22,36 @@
 #include "bsp_pcf8574.h"
 #include "bsp_MessageQueue.h"
 #include "bsp_at24cxx.h"
+#include "bsp_i2c_tool.h"
 #include "rt_cpu_usage.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-#define STM32_FLASH_START_ADRESS     ((uint32_t)0x8008000)
-#define STM32_FLASH_SIZE             (480 * 1024)
-#define STM32_FLASH_END_ADDRESS      ((uint32_t)(STM32_FLASH_START_ADRESS + STM32_FLASH_SIZE))
+#define STM32_FLASH_START_ADRESS ((uint32_t)0x8008000)
+#define STM32_FLASH_SIZE (480 * 1024)
+#define STM32_FLASH_END_ADDRESS ((uint32_t)(STM32_FLASH_START_ADRESS + STM32_FLASH_SIZE))
 
 /* Internal SRAM memory size[Kbytes] <8-64>, Default: 64*/
-#define STM32_SRAM_SIZE      64
-#define STM32_SRAM_END       (0x20000000 + STM32_SRAM_SIZE * 1024)
+#define STM32_SRAM_SIZE 64
+#define STM32_SRAM_END (0x20000000 + STM32_SRAM_SIZE * 1024)
 
 #if defined(__ARMCC_VERSION)
-extern int Image$$RW_IRAM1$$ZI$$Limit;
-#define HEAP_BEGIN      ((void *)&Image$$RW_IRAM1$$ZI$$Limit)
+    extern int Image$$RW_IRAM1$$ZI$$Limit;
+#define HEAP_BEGIN ((void *)&Image$$RW_IRAM1$$ZI$$Limit)
 #elif __ICCARM__
-#pragma section="CSTACK"
-#define HEAP_BEGIN      (__segment_end("CSTACK"))
+#pragma section = "CSTACK"
+#define HEAP_BEGIN (__segment_end("CSTACK"))
 #else
 extern int __bss_end;
-#define HEAP_BEGIN      ((void *)&__bss_end)
+#define HEAP_BEGIN ((void *)&__bss_end)
 #endif
 
-#define HEAP_END        STM32_SRAM_END
+#define HEAP_END STM32_SRAM_END
 
-void SystemClock_Config(void);
+    void SystemClock_Config(void);
 
 #ifdef __cplusplus
 }

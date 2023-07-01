@@ -30,6 +30,9 @@ if GetDepend(['BSP_USING_PCF8574']):
 if GetDepend(['BSP_USING_AT24CXX']):
     src += Glob('ports/eeprom/bsp_at24cxx.c')
 
+if GetDepend(['RT_USING_I2C']):
+    src += Glob('ports/i2c_tool/bsp_i2c_tool.c')
+
 path =  [cwd]
 path += [cwd + '/CubeMX_Config/Inc']
 
@@ -51,8 +54,11 @@ if GetDepend(['BSP_USING_PCF8574']):
 if GetDepend(['BSP_USING_MESSAGEQUEUE']):
     path += [cwd + '/ports/MessageQueue']
 
-if GetDepend(['BSP_USING_MESSAGEQUEUE']):
+if GetDepend(['BSP_USING_AT24CXX']):
     path += [cwd + '/ports/eeprom']
+
+if GetDepend(['RT_USING_I2C']):
+    path += [cwd + '/ports/i2c_tool']
 
 startup_path_prefix = SDK_LIB
 

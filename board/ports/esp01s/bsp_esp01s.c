@@ -3,7 +3,7 @@
 
 /* ULOG_USING_SYSLOG */
 #ifndef ULOG_USING_SYSLOG
-#define LOG_TAG "drv_esp01s"
+#define LOG_TAG "bsp_esp01s"
 #define LOG_LVL LOG_LVL_DBG
 #include <ulog.h>
 #endif

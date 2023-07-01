@@ -5,7 +5,7 @@
 
 /* ULOG_USING_SYSLOG */
 #ifndef ULOG_USING_SYSLOG
-#define LOG_TAG "drv_led"
+#define LOG_TAG "bsp_led"
 #define LOG_LVL LOG_LVL_DBG
 #include <ulog.h>
 #endif
