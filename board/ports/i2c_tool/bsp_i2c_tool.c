@@ -10,7 +10,7 @@
 #include <ulog.h>
 #endif
 
-int i2c_probe(struct rt_i2c_bus_device *bus, char addr)
+static int i2c_probe(struct rt_i2c_bus_device *bus, char addr)
 {
     unsigned char cmd[1];
     cmd[0] = 0;
@@ -21,6 +21,18 @@ int i2c_probe(struct rt_i2c_bus_device *bus, char addr)
     msgs.buf = cmd;
     msgs.len = 0;
 
+    return rt_i2c_transfer(bus, &msgs, 1);
+}
+
+rt_size_t i2c_device_check(struct rt_i2c_bus_device *bus,char addr)
+{
+    RT_ASSERT(bus);
+    uint8_t cmd[1] = {0x00};
+    struct rt_i2c_msg msgs;
+    msgs.addr = addr;
+    msgs.flags = RT_I2C_WR;
+    msgs.buf = cmd;
+    msgs.len = 0;
     return rt_i2c_transfer(bus, &msgs, 1);
 }
 
