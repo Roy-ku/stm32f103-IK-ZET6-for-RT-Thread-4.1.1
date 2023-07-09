@@ -81,9 +81,9 @@
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
-            <RunUserProg2>0</RunUserProg2>
+            <RunUserProg2>1</RunUserProg2>
             <UserProg1Name>fromelf --bin !L --output rtthread.bin</UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg2Name>.\build\keil\Keil5_disp_size_bar_v03.exe</UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>__STDC_LIMIT_MACROS, STM32F103xE, USE_HAL_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __RTTHREAD__, RT_USING_ARM_LIBC</Define>
               <Undefine></Undefine>
-              <IncludePath>applications;.;..\..\..\components\libc\compilers\common\include;..\..\..\components\libc\compilers\common\extension;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\libcpu\arm\common;..\..\..\libcpu\arm\cortex-m3;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;board;board\CubeMX_Config\Inc;board\ports\key;board\ports\led;board\ports\beep;board\ports\esp01s;board\ports\pcf8574;board\ports\MessageQueue;board\ports\eeprom;board\ports\i2c_tool;..\libraries\HAL_Drivers;..\libraries\HAL_Drivers\config;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\finsh;packages\FlexibleButton-v1.0.0;.;..\..\..\include;..\libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include;..\libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc;packages\beep-v1.1.0;packages\pcf8574-latest;..\..\..\offline-packages\at24cxx;..\..\..\offline-packages\CPUusagerate;..\..\..\offline-packages\MessageQueue;..\..\..\components\libc\posix\io\poll;..\..\..\components\libc\posix\io\stdio;..\..\..\components\libc\posix\ipc;..\..\..\components\utilities\ulog</IncludePath>
+              <IncludePath>applications;.;..\..\..\components\libc\compilers\common\include;..\..\..\components\libc\compilers\common\extension;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\libcpu\arm\common;..\..\..\libcpu\arm\cortex-m3;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;board;board\CubeMX_Config\Inc;board\ports\key;board\ports\led;board\ports\beep;board\ports\esp01s;board\ports\pcf8574;board\ports\MessageQueue;board\ports\eeprom;board\ports\aht10;board\ports\i2c_tool;..\libraries\HAL_Drivers;..\libraries\HAL_Drivers\config;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\finsh;packages\FlexibleButton-v1.0.0;.;..\..\..\include;..\libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include;..\libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc;packages\beep-v1.1.0;packages\pcf8574-latest;..\..\..\offline-packages\aht10;..\..\..\offline-packages\at24cxx;..\..\..\offline-packages\CPUusagerate;..\..\..\offline-packages\MessageQueue;..\..\..\components\libc\posix\io\poll;..\..\..\components\libc\posix\io\stdio;..\..\..\components\libc\posix\ipc;..\..\..\components\utilities\ulog</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -547,6 +547,11 @@
               <FileName>board.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\board.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_aht10.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\ports\aht10\bsp_aht10.c</FilePath>
             </File>
             <File>
               <FileName>bsp_beep.c</FileName>
@@ -806,6 +811,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>PKG_aht10</GroupName>
+          <Files>
+            <File>
+              <FileName>aht10.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\offline-packages\aht10\aht10.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>PKG_at24cxx</GroupName>
           <Files>
             <File>
@@ -839,14 +854,14 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>ulog.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\utilities\ulog\ulog.c</FilePath>
-            </File>
-            <File>
               <FileName>console_be.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\utilities\ulog\backend\console_be.c</FilePath>
+            </File>
+            <File>
+              <FileName>ulog.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\utilities\ulog\ulog.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -22,6 +22,7 @@
 #include "bsp_pcf8574.h"
 #include "bsp_MessageQueue.h"
 #include "bsp_at24cxx.h"
+#include "bsp_aht10.h"
 #include "bsp_i2c_tool.h"
 #include "rt_cpu_usage.h"
 

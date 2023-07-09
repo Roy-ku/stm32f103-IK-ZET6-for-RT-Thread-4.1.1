@@ -54,6 +54,13 @@ menu "Onboard Peripheral Drivers"
     select PKG_USING_AT24CXX_BY_ROY
     default n
 
+    config BSP_USING_AHT10
+    bool "Enable onboard aht10"
+    select RT_USING_PIN
+    select BSP_USING_I2C1
+    select PKG_USING_AHT10_BY_ROY
+    default n
+
 endmenu
 
 menu "On-chip Peripheral Drivers"
