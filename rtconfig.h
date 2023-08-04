@@ -191,6 +191,8 @@
 #define PKG_USING_AT24CXX_BY_ROY_LATEST_VERSION
 #define PKG_USING_AHT10_BY_ROY
 #define PKG_USING_AHT10_BY_ROY_LATEST_VERSION
+#define PKG_USING_KALMANFILTER
+#define PKG_USING_KALMANFILTER_LATEST_VERSION
 #define SOC_FAMILY_STM32
 #define SOC_SERIES_STM32F1
 
@@ -200,6 +202,7 @@
 
 /* Onboard Peripheral Drivers */
 
+#define BSP_USING_TIMER
 #define BSP_USING_KEY
 #define BSP_USING_LED
 #define BSP_USING_BEEP
@@ -208,6 +211,7 @@
 #define BSP_USING_PCF8574
 #define BSP_USING_AT24CXX
 #define BSP_USING_AHT10
+#define USING_SOFT_FILTER
 
 /* On-chip Peripheral Drivers */
 

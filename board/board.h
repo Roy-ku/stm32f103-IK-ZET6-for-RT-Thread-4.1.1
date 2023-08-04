@@ -14,6 +14,7 @@
 #include <rtthread.h>
 #include <stm32f1xx.h>
 #include "drv_common.h"
+#include "bsp_timer.h"
 #include "drv_gpio.h"
 #include "bsp_key.h"
 #include "bsp_led.h"
@@ -25,7 +26,6 @@
 #include "bsp_aht10.h"
 #include "bsp_i2c_tool.h"
 #include "rt_cpu_usage.h"
-
 #ifdef __cplusplus
 extern "C"
 {

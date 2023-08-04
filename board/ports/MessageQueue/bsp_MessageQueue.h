@@ -15,6 +15,7 @@ typedef enum
 	MSG_Btn2,
 	MSG_Btn3,
 	MSG_PCF8574_INT,
+	MSG_AHT10_UPDATE
 
 } BSP_MSG_INFO;
 

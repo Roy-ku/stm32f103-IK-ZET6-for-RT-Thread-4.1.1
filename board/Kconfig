@@ -9,6 +9,12 @@ config SOC_STM32F103ZE
 
 menu "Onboard Peripheral Drivers"
 
+    config BSP_USING_TIMER
+    bool "Enable onboard timer"
+    select RT_USING_TIMER_SOFT
+    select PKG_USING_MESSAGEQUEUE
+    default n
+
     config BSP_USING_KEY
     bool "Enable onboard keys"
     select RT_USING_PIN
@@ -54,13 +60,18 @@ menu "Onboard Peripheral Drivers"
     select PKG_USING_AT24CXX_BY_ROY
     default n
 
-    config BSP_USING_AHT10
+    menuconfig BSP_USING_AHT10
     bool "Enable onboard aht10"
     select RT_USING_PIN
     select BSP_USING_I2C1
     select PKG_USING_AHT10_BY_ROY
     default n
-
+    if BSP_USING_AHT10
+    config USING_SOFT_FILTER
+    bool "Use_soft_filter"
+    select PKG_USING_KALMANFILTER
+    default n
+    endif
 endmenu
 
 menu "On-chip Peripheral Drivers"

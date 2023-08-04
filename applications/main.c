@@ -40,7 +40,7 @@ int main(void)
         // rt_thread_mdelay(500);
         // led_config(LED_1, OFF);
         // rt_thread_mdelay(500);
-        LOG_D("enter main thread.");
+        // LOG_D("enter main thread.");
         if (MQ_GetMsg(&msg))
         {
             rt_uint8_t data = 0;
@@ -53,10 +53,14 @@ int main(void)
                 LOG_D("MSG_Btn3");
                 break;
             case MSG_PCF8574_INT:
-
                 data = pcf8574_port_read(pcf8574_dev);
                 LOG_D("data = %x", data);
                 rt_pin_irq_enable(PCF8574_INT_PIN, PIN_IRQ_ENABLE);
+                break;
+            case MSG_AHT10_UPDATE:
+                // LOG_D("MSG_AHT10_UPDATE");
+                bsp_aht10_data_update();
+                bsp_aht10_data_print();
                 break;
             default:
                 break;
@@ -73,8 +77,6 @@ void led_task_entry(void *parameter)
         // cpu_usage_get(&major, &minor);
         // LOG_D("cpu usage: %u.%u%%  ", major, minor);
         led_config(LED_2, TOGGLE);
-        rt_thread_delay(1000);
-        // led_config(LED_2, OFF);
-        // rt_thread_delay(1000);
+        rt_thread_delay(200);
     }
 }

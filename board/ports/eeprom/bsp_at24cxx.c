@@ -14,8 +14,7 @@ static int bsp_atc24xx_init(void);
 
 static int bsp_atc24xx_init(void)
 {
-	    at24cxx_dev = at24cxx_init(PCF8574_I2C_BUS, RT_NULL);
-
+    at24cxx_dev = at24cxx_init(PCF8574_I2C_BUS, RT_NULL);
     if (at24cxx_dev == RT_NULL)
         return RT_EOK;
     return RT_ERROR;

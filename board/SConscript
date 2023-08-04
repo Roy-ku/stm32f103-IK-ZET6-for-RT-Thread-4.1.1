@@ -12,6 +12,9 @@ board.c
 CubeMX_Config/Src/stm32f1xx_hal_msp.c
 ''')
 
+if GetDepend(['BSP_USING_TIMER']):
+    src += Glob('ports/timer/bsp_timer.c')
+
 if GetDepend(['BSP_USING_KEY']):
     src += Glob('ports/key/bsp_key.c')
 
@@ -38,6 +41,9 @@ if GetDepend(['RT_USING_I2C']):
 
 path =  [cwd]
 path += [cwd + '/CubeMX_Config/Inc']
+
+if GetDepend(['BSP_USING_TIMER']):
+    path += [cwd + '/ports/timer']
 
 if GetDepend(['BSP_USING_KEY']):
     path += [cwd + '/ports/key']
