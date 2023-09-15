@@ -86,6 +86,11 @@
 #define RT_USING_I2C
 #define RT_USING_I2C_BITOPS
 #define RT_USING_PIN
+#define RT_USING_SPI
+#define RT_USING_SFUD
+#define RT_SFUD_USING_SFDP
+#define RT_SFUD_USING_FLASH_INFO_TABLE
+#define RT_SFUD_SPI_MAX_HZ 50000000
 
 /* Using USB */
 
@@ -212,10 +217,13 @@
 #define BSP_USING_AT24CXX
 #define BSP_USING_AHT10
 #define USING_SOFT_FILTER
+#define BSP_USING_SPI_FLASH
 
 /* On-chip Peripheral Drivers */
 
 #define BSP_USING_GPIO
+#define BSP_USING_ON_CHIP_FLASH
+#define BSP_CHIP_FLASH_TEST_SAMPLE
 #define BSP_USING_UART
 #define BSP_USING_UART1
 #define BSP_UART1_RX_USING_DMA
@@ -226,6 +234,8 @@
 
 #define BSP_I2C1_SCL_PIN 22
 #define BSP_I2C1_SDA_PIN 23
+#define BSP_USING_SPI
+#define BSP_USING_SPI2
 
 /* Board extended module Drivers */
 

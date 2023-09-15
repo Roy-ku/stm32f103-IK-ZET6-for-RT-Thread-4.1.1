@@ -13,7 +13,7 @@ static struct rt_timer bsp_timer_2S = {0};
 
 static void timer_2000ms_callback(void *param)
 {
-    MQ_PutMsg(MSG_AHT10_UPDATE, 0);
+    //MQ_PutMsg(MSG_AHT10_UPDATE, 0);
 }
 
 static int bsp_timer_init(void)

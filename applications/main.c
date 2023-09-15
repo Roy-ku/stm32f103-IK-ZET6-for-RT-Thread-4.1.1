@@ -34,13 +34,11 @@ int main(void)
     // 開啟線程調度
     rt_thread_startup(&led_thread);
 
+    LoadParam();
     while (1)
     {
-        // led_config(LED_1, ON);
-        // rt_thread_mdelay(500);
-        // led_config(LED_1, OFF);
-        // rt_thread_mdelay(500);
-        // LOG_D("enter main thread.");
+        //led_config(LED_1,ON);
+
         if (MQ_GetMsg(&msg))
         {
             rt_uint8_t data = 0;
@@ -66,6 +64,7 @@ int main(void)
                 break;
             }
         }
+         led_config(LED_1,OFF);
     }
 }
 
@@ -76,7 +75,7 @@ void led_task_entry(void *parameter)
     {
         // cpu_usage_get(&major, &minor);
         // LOG_D("cpu usage: %u.%u%%  ", major, minor);
-        led_config(LED_2, TOGGLE);
+        //led_config(LED_2, TOGGLE);
         rt_thread_delay(200);
     }
 }

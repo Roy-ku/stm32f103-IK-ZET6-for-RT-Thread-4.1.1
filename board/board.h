@@ -23,8 +23,10 @@
 #include "bsp_pcf8574.h"
 #include "bsp_MessageQueue.h"
 #include "bsp_at24cxx.h"
+#include "bsp_param.h"
 #include "bsp_aht10.h"
 #include "bsp_i2c_tool.h"
+#include "bsp_cpu_flash.h"
 #include "rt_cpu_usage.h"
 #ifdef __cplusplus
 extern "C"
